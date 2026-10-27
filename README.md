@@ -13,6 +13,9 @@ Hover or click the island to expand it. The default auto-collapse delay is 400ms
 
 _Collapsed island, captured in 0.4. The expanded interface and controls have evolved in 0.5.0._
 
+<img width="560" height="572" alt="Orbit Interface 2" src="https://github.com/user-attachments/assets/5bf5245a-405c-467e-b70c-fa29e356adc8" />
+
+
 ## What's in 0.5.0
 
 - Floating always-on-top island with contextual expansion and interaction protection.
