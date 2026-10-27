@@ -8,7 +8,8 @@ Download [ORBIT-0.5.0-windows-x64.exe](https://github.com/AsherFerdinand/orbit-d
 
 Hover or click the island to expand it. The default auto-collapse delay is 400ms after leaving; existing saved delays are preserved. Focus, unsaved note drafts and media scrubbing protect active interaction. Minus or Escape collapses when no draft/edit is pending. Right-click a non-text area, use Shift+F10, or open the tray menu for advanced settings, Show/Hide and Exit.
 
-![Collapsed ORBIT island (0.4 capture)](screenshots/0.4/collapsed-final.png)
+<img width="328" height="63" alt="Orbit Interface 1" src="https://github.com/user-attachments/assets/7165dbb4-41e6-428b-b50a-da0268a09efb" />
+
 
 _Collapsed island, captured in 0.4. The expanded interface and controls have evolved in 0.5.0._
 
