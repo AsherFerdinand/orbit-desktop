@@ -4,11 +4,12 @@ A lightweight Windows Dynamic-Island-style desktop companion built with Tauri 2,
 
 ## Launch
 
+<img width="328" height="63" alt="Orbit Interface 1" src="https://github.com/user-attachments/assets/f0662a59-51fe-4219-8b93-ec89fa4e6c8b" />
+
+
 Download [ORBIT-0.5.0-windows-x64.exe](https://github.com/AsherFerdinand/orbit-desktop/releases/download/v0.5.0/ORBIT-0.5.0-windows-x64.exe) from the [GitHub Release](https://github.com/AsherFerdinand/orbit-desktop/releases/tag/v0.5.0). Exit older ORBIT instances through the tray, then double-click the downloaded executable. Run one version at a time. The unsigned portable Windows x64 executable needs Microsoft Edge WebView2 Runtime. It works without localhost or a development server. Windows 11 is recommended; Windows 10 is also supported.
 
 Hover or click the island to expand it. The default auto-collapse delay is 400ms after leaving; existing saved delays are preserved. Focus, unsaved note drafts and media scrubbing protect active interaction. Minus or Escape collapses when no draft/edit is pending. Right-click a non-text area, use Shift+F10, or open the tray menu for advanced settings, Show/Hide and Exit.
-
-<img width="328" height="63" alt="Orbit Interface 1" src="https://github.com/user-attachments/assets/7165dbb4-41e6-428b-b50a-da0268a09efb" />
 
 
 _Collapsed island, captured in 0.4. The expanded interface and controls have evolved in 0.5.0._
