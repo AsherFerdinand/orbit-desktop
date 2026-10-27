@@ -1,62 +1,476 @@
-# ORBIT 0.5.0 — Your desktop, in motion.
+<div align="center">
 
-A lightweight Windows Dynamic-Island-style desktop companion built with Tauri 2, React/TypeScript and Rust. Local notes and native Windows integrations; no account, cloud service or browser extension.
+# ◉ ORBIT
 
-## Launch
+### Your desktop, in motion.
 
-<img width="328" height="63" alt="Orbit Interface 1" src="https://github.com/user-attachments/assets/f0662a59-51fe-4219-8b93-ec89fa4e6c8b" />
+**A lightweight Windows desktop companion for native media controls, system monitoring, Quick Notes and contextual interactions — all inside a compact Dynamic-Island-style interface.**
 
+<br>
 
-Download [ORBIT-0.5.0-windows-x64.exe](https://github.com/AsherFerdinand/orbit-desktop/releases/download/v0.5.0/ORBIT-0.5.0-windows-x64.exe) from the [GitHub Release](https://github.com/AsherFerdinand/orbit-desktop/releases/tag/v0.5.0). Exit older ORBIT instances through the tray, then double-click the downloaded executable. Run one version at a time. The unsigned portable Windows x64 executable needs Microsoft Edge WebView2 Runtime. It works without localhost or a development server. Windows 11 is recommended; Windows 10 is also supported.
+[![Release](https://img.shields.io/badge/Release-v0.5.0-1DB954?style=for-the-badge)](https://github.com/AsherFerdinand/orbit-desktop/releases/tag/v0.5.0)
+![Windows](https://img.shields.io/badge/Windows-10%20%7C%2011-0078D4?style=for-the-badge&logo=windows11&logoColor=white)
+![Tauri](https://img.shields.io/badge/Tauri-2-24C8DB?style=for-the-badge&logo=tauri&logoColor=white)
+![Rust](https://img.shields.io/badge/Rust-Native-000000?style=for-the-badge&logo=rust&logoColor=white)
 
-Hover or click the island to expand it. The default auto-collapse delay is 400ms after leaving; existing saved delays are preserved. Focus, unsaved note drafts and media scrubbing protect active interaction. Minus or Escape collapses when no draft/edit is pending. Right-click a non-text area, use Shift+F10, or open the tray menu for advanced settings, Show/Hide and Exit.
+<br>
 
+**[Download ORBIT 0.5.0](https://github.com/AsherFerdinand/orbit-desktop/releases/download/v0.5.0/ORBIT-0.5.0-windows-x64.exe)**
+&nbsp;·&nbsp;
+[Release Notes](https://github.com/AsherFerdinand/orbit-desktop/releases/tag/v0.5.0)
 
-_Collapsed island, captured in 0.4. The expanded interface and controls have evolved in 0.5.0._
+</div>
 
-<img width="560" height="572" alt="Orbit Interface 2" src="https://github.com/user-attachments/assets/5bf5245a-405c-467e-b70c-fa29e356adc8" />
+---
 
+## ◉ Meet ORBIT
 
-## What's in 0.5.0
+ORBIT is an always-on-top Windows companion designed to stay **quiet when you don't need it and interactive when you do**.
 
-- Floating always-on-top island with contextual expansion and interaction protection.
-- Native Windows battery/charging, CPU/RAM and local adapter information.
-- Refined island interaction, brighter green accent, read-only volume percentage and a brief volume HUD.
-- Native GSMTC media metadata, artwork and capability-aware controls, prioritising YouTube/YouTube Music in Brave. Manual Windows-session selection is in advanced settings.
-- Seekable expanded media timeline: click, drag or use arrow keys/Home/End when Windows exposes seeking. Reliable finite timelines without seek capability stay read-only; missing timelines are omitted. Collapsed progress is read-only.
-- Quick Notes with edit/complete/reopen/delete, paper indicators and optional date/time reminders delivered as native Windows notifications.
-- Independent ORBIT System/Light/Dark appearance and current-user Windows Light/Dark controls. No administrator rights are needed.
-- Adaptive background sampling, immediate opening refresh and artwork transferred only on identity changes.
+In its collapsed state, ORBIT provides glanceable information without taking over the desktop. Hover over the island and it expands into an interactive workspace for **media controls, system information and Quick Notes**.
 
-## Notes, reminders and preferences
+Built with **Tauri 2, Rust, React and TypeScript**, ORBIT connects directly to native Windows functionality instead of behaving like a standalone web dashboard.
 
-Type a quick note and press Enter or Add. The clock control adds an optional local reminder time. Complete a note to cancel its pending reminder; reopening does not re-enable it automatically. ORBIT must remain running for reminders (hidden is fine). Notification banners depend on Windows settings/Do Not Disturb; notification click-to-open is not implemented. On first reminder delivery, the portable app creates/updates its per-user Start Menu ORBIT shortcut with the notification identity Windows requires. It does not add autostart, enable blocked notifications or require an installer.
+> **Local by design.** No ORBIT account, cloud backend or browser extension is required.
 
-Data stays in **%APPDATA%/com.orbit.desktop/**. Existing notes/settings are reused across upgrades. Notes have stable IDs, persisted reminder state and a previous-file backup. Invalid/corrupt files are preserved rather than silently reset. Limits: 500 notes, 500 Unicode characters per note, 2 MiB notes file. Unsaved drafts survive running-app overlays but not process exit. Settings preserve earlier values and legacy backups.
+<br>
 
-Windows/Brave determines session granularity: a tab is not necessarily a separate session. Missing artwork/metadata/controls cannot be invented. Browser commands may be declined; live/DVR timelines may not describe a complete recording. Artwork comes only from the native session, capped at 2 MiB per thumbnail.
+### Ambient Mode
 
-CPU/RAM samples run only while visible compact metrics are active, default every 2s. Network uses one 2s active / 10s collapsed / 30s hidden schedule; battery keeps native power callbacks and 5s visible / 30s hidden fallback. These are local system readings, not external analytics.
+<div align="center">
 
-## Validation and development
+<img width="420" alt="ORBIT ambient interface" src="https://github.com/user-attachments/assets/f0662a59-51fe-4219-8b93-ec89fa4e6c8b" />
 
-See [0.5 release validation](docs/RELEASE-0.5.0.md), [changelog](docs/CHANGELOG.md), [codebase map](CODEBASE-MAP.md) and [contributor guidance](AGENTS.md). The included screenshot is labelled with its capture version. No RAM/CPU reduction is claimed from development measurements.
+<br>
 
-Development needs Node.js 22+, Rust stable MSVC, Visual Studio C++ Build Tools/Windows SDK and WebView2.
+<sub>Compact, always-on-top and designed to stay out of the way.</sub>
+
+</div>
+
+<br>
+
+### Interactive Mode
+
+<div align="center">
+
+<img width="620" alt="ORBIT expanded interface with Quick Notes" src="https://github.com/user-attachments/assets/5bf5245a-405c-467e-b70c-fa29e356adc8" />
+
+<br>
+
+<sub>Hover to expand — control media, inspect system state and work with Quick Notes.</sub>
+
+</div>
+
+---
+
+## ✦ What ORBIT Can Do
+
+| | Capability | What it does |
+|:---:|---|---|
+| ◉ | **Ambient Island** | Floats above the desktop and automatically expands or collapses around your interaction. |
+| ♫ | **Native Media** | Reads Windows GSMTC sessions for metadata, artwork and playback controls. |
+| ▶ | **Seekable Timeline** | Click or drag through media when the active Windows session supports seeking. |
+| ◐ | **System Monitoring** | Displays battery, charging state, CPU, RAM and local network information. |
+| ◖ | **Volume HUD** | Reacts to native Windows volume changes with a compact temporary indicator. |
+| ▱ | **Quick Notes** | Create, edit, complete and manage locally stored notes directly from the island. |
+| ◷ | **Reminders** | Attach a date/time to a note and receive a native Windows notification. |
+| ◑ | **Appearance** | Control ORBIT's appearance and the current Windows Light/Dark preference. |
+
+---
+
+## ♫ Native Media Integration
+
+ORBIT integrates with **Windows Global System Media Transport Controls (GSMTC)** rather than scraping browser content or requiring an extension.
+
+It can expose:
+
+- Track title and artist
+- Album artwork
+- Play / pause
+- Previous / next
+- Playback progress
+- Click-to-seek
+- Drag-to-seek
+- Capability-aware controls
+- Automatic media-session selection
+
+ORBIT prioritises **YouTube and YouTube Music running through Brave** while still working with compatible Windows media sessions.
+
+When Windows does not expose a capability, ORBIT does not fake it. Unsupported seekable timelines remain read-only, while unavailable timelines are omitted.
+
+---
+
+## ▱ Quick Notes
+
+Quick Notes turn the island into a small temporary workspace without requiring a separate notes application.
+
+```text
+Write
+  ↓
+Save locally
+  ↓
+Add reminder (optional)
+  ↓
+Windows notification
+```
+
+Notes support:
+
+**Create · Edit · Complete · Reopen · Delete · Remind**
+
+Small paper indicators remain visible around the island so saved notes can be recognised at a glance.
+
+### Reminder behaviour
+
+Reminders are persisted locally and restored when ORBIT restarts.
+
+Completing or deleting a note cancels its pending reminder. Changing a reminder to a new future time rearms it, while fired reminders are protected against duplicate delivery.
+
+> ORBIT must be running for reminders to fire. It may remain hidden in the background.
+
+---
+
+## ⚙ Native Windows Integration
+
+ORBIT is not simply a React interface wrapped in a desktop window. Native functionality is handled by the Rust/Tauri layer.
+
+| Windows capability | ORBIT integration |
+|---|---|
+| 🎵 Media sessions | **Windows GSMTC** |
+| 🔊 Audio | **Windows Core Audio** |
+| 🔋 Battery / charging | **Native Windows power integration** |
+| 🖥 System telemetry | **Native system monitoring** |
+| 🔔 Reminders | **Windows notifications** |
+| ◐ Appearance | **Windows current-user theme preferences** |
+
+This keeps Windows-specific responsibilities on the native side while React remains responsible for presentation and interaction.
+
+---
+
+## ◇ Architecture
+
+```mermaid
+flowchart LR
+    USER["User"] --> UI["React + TypeScript"]
+    UI --> TAURI["Tauri IPC"]
+    TAURI --> RUST["Rust Native Runtime"]
+
+    RUST --> MEDIA["GSMTC"]
+    RUST --> AUDIO["Core Audio"]
+    RUST --> POWER["Power / Battery"]
+    RUST --> SYSTEM["System Telemetry"]
+    RUST --> NOTIFY["Notifications"]
+    RUST --> THEME["Windows Theme"]
+
+    UI --> NOTES["Quick Notes UI"]
+    NOTES --> TAURI
+```
+
+### Design principles
+
+- **React owns presentation and interaction.**
+- **Rust owns native Windows integration.**
+- Media processing remains isolated where required by Windows COM/WinRT behaviour.
+- Native callbacks are preferred where practical instead of unnecessary polling.
+- Notes and settings remain local.
+- ORBIT uses a single-window overlay architecture rather than multiple independent widgets.
+
+For the deeper implementation structure, see [`CODEBASE-MAP.md`](CODEBASE-MAP.md).
+
+---
+
+## ◐ Designed to Stay Out of the Way
+
+ORBIT changes how frequently it performs background work depending on what the user can actually see.
+
+```text
+EXPANDED
+    │
+    │  active telemetry
+    ▼
+COLLAPSED
+    │
+    │  reduced sampling
+    ▼
+HIDDEN
+       minimal background work
+```
+
+Some examples:
+
+- CPU/RAM monitoring runs only when the relevant metrics are useful.
+- Network sampling adapts between active, collapsed and hidden states.
+- Opening ORBIT triggers an immediate refresh instead of waiting for the next slow background sample.
+- Battery and audio use native callbacks where appropriate.
+- Media artwork is transferred only when its identity changes.
+- Artwork caching is bounded.
+- Unchanged notes and settings avoid unnecessary persistence writes.
+
+These are architectural optimisations rather than claims of a specific RAM or CPU reduction.
+
+---
+
+## 🛠 Tech Stack
+
+### Application
+
+![Rust](https://img.shields.io/badge/Rust-000000?style=flat-square&logo=rust&logoColor=white)
+![Tauri](https://img.shields.io/badge/Tauri_2-24C8DB?style=flat-square&logo=tauri&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?style=flat-square&logo=react&logoColor=61DAFB)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat-square&logo=vite&logoColor=white)
+
+### Windows Integration
+
+![Windows](https://img.shields.io/badge/Windows_APIs-0078D4?style=flat-square&logo=windows11&logoColor=white)
+![GSMTC](https://img.shields.io/badge/GSMTC-Media-1DB954?style=flat-square)
+![Core Audio](https://img.shields.io/badge/Core_Audio-Native-1DB954?style=flat-square)
+![WebView2](https://img.shields.io/badge/WebView2-0F6CBD?style=flat-square&logo=microsoftedge&logoColor=white)
+
+### Engineering
+
+![Tests](https://img.shields.io/badge/Automated_Tests-Frontend_%2B_Rust-success?style=flat-square)
+![Local First](https://img.shields.io/badge/Data-Local_First-success?style=flat-square)
+![Architecture](https://img.shields.io/badge/Architecture-Event_Driven-blue?style=flat-square)
+
+---
+
+## ↓ Download
+
+### Windows x64
+
+**[Download ORBIT 0.5.0 →](https://github.com/AsherFerdinand/orbit-desktop/releases/download/v0.5.0/ORBIT-0.5.0-windows-x64.exe)**
+
+Or view the complete:
+
+**[ORBIT 0.5.0 GitHub Release](https://github.com/AsherFerdinand/orbit-desktop/releases/tag/v0.5.0)**
+
+### Requirements
+
+| Requirement | Status |
+|---|---|
+| Windows 11 | Recommended |
+| Windows 10 | Supported |
+| Architecture | x64 |
+| Microsoft Edge WebView2 Runtime | Required |
+| Browser extension | Not required |
+| ORBIT account | Not required |
+| Administrator rights | Not required for normal operation |
+
+> **Note:** The current portable executable is unsigned, so Windows may display a security warning.
+
+The portable build contains its frontend assets and does **not** require localhost or a development server.
+
+---
+
+## ↗ Using ORBIT
+
+| Action | Result |
+|---|---|
+| **Hover / click** | Expand the island |
+| **Move away** | Automatically collapse |
+| **Click media progress** | Seek when supported |
+| **Drag media progress** | Scrub through supported media |
+| **Quick Note** | Save a local note |
+| **Clock** | Add an optional reminder |
+| **Right-click / tray** | Open advanced controls |
+| **Esc** | Collapse when no protected interaction is active |
+
+ORBIT protects active interactions such as note editing and media scrubbing from automatic collapse.
+
+---
+
+## ⌂ Local by Design
+
+ORBIT does not require an external service to provide its core functionality.
+
+```text
+Your PC
+│
+├── Windows APIs
+│     ├── Media
+│     ├── Audio
+│     ├── Battery
+│     ├── Telemetry
+│     └── Notifications
+│
+├── ORBIT
+│
+└── Local App Data
+      ├── Notes
+      └── Settings
+```
+
+Notes and preferences are stored under:
+
+```text
+%APPDATA%/com.orbit.desktop/
+```
+
+ORBIT does not require:
+
+- an ORBIT account
+- a cloud backend
+- a browser extension
+- an external analytics service for system telemetry
+
+---
+
+<details>
+<summary><strong>▸ Notes, persistence & reminder details</strong></summary>
+
+<br>
+
+Notes use stable IDs and persisted reminder state.
+
+Existing notes and settings are reused across upgrades, and previous-file backups are retained. Invalid or corrupt files are preserved rather than silently discarded.
+
+Current note limits:
+
+- 500 notes
+- 500 Unicode characters per note
+- 2 MiB notes file
+
+Unsaved drafts survive running-app overlays but not process exit.
+
+For reminders, ORBIT stores an absolute timestamp and durable fired state to reduce duplicate notification delivery.
+
+Notification banners remain subject to Windows notification and Do Not Disturb settings.
+
+Notification click-to-open is not currently implemented.
+
+</details>
+
+<details>
+<summary><strong>▸ Media implementation details</strong></summary>
+
+<br>
+
+Windows determines GSMTC session granularity. A browser tab is therefore not guaranteed to appear as an independent media session.
+
+ORBIT cannot invent metadata, artwork or controls that the native media session does not expose.
+
+Browser commands may also be declined by the media source.
+
+Live and DVR timelines may not represent a complete recording.
+
+Artwork is sourced from the native media session and is bounded to prevent unrestricted thumbnail memory usage.
+
+</details>
+
+<details>
+<summary><strong>▸ Telemetry behaviour</strong></summary>
+
+<br>
+
+ORBIT adjusts system monitoring according to application state.
+
+Network monitoring uses an adaptive schedule:
+
+| State | Interval |
+|---|---:|
+| Active / expanded | ~2 s |
+| Collapsed | ~10 s |
+| Hidden | ~30 s |
+
+CPU/RAM monitoring is disabled where the information is not useful.
+
+Battery monitoring preserves native power callbacks with a slower fallback while hidden.
+
+These readings remain local system information and are not external analytics.
+
+</details>
+
+---
+
+## </> Development
+
+### Clone
 
 ```powershell
 git clone https://github.com/AsherFerdinand/orbit-desktop.git
 cd orbit-desktop
 npm ci
+```
+
+### Run
+
+```powershell
 npm run tauri -- dev
 ```
 
-For an optimized portable build:
+### Optimized build
 
 ```powershell
 npm run tauri -- build --no-bundle
 ```
 
-The executable is written to src-tauri/target/release/orbit-desktop.exe. Tauri embeds the Vite assets and uses its production custom protocol.
+The resulting executable is written to:
 
-Checks: npm run typecheck, npm test, and cargo test --manifest-path src-tauri/Cargo.toml. The optional orbit.ps1 helper provides dev/build/check tasks and falls back to the system toolchain outside the original workspace. See AGENTS.md before contributing.
+```text
+src-tauri/target/release/orbit-desktop.exe
+```
+
+### Requirements
+
+Development requires:
+
+- Node.js 22+
+- Rust stable MSVC
+- Visual Studio C++ Build Tools
+- Windows SDK
+- Microsoft Edge WebView2
+
+---
+
+## ✓ Validation
+
+ORBIT includes automated frontend and native Rust testing alongside manual Windows integration verification.
+
+```powershell
+npm run typecheck
+npm test
+cargo test --manifest-path src-tauri/Cargo.toml
+```
+
+The release validation report documents the actual verification performed for 0.5.0.
+
+**[View ORBIT 0.5.0 validation →](docs/RELEASE-0.5.0.md)**
+
+---
+
+## △ Current Limitations
+
+- ORBIT must remain running for Quick Note reminders to fire.
+- Notification click-to-open is not yet implemented.
+- Media functionality depends on capabilities exposed by the active Windows GSMTC session.
+- Browser media-session granularity is controlled by Windows/browser behaviour.
+- The current portable Windows executable is unsigned.
+
+---
+
+## ≡ Documentation
+
+| Document | Description |
+|---|---|
+| **[Release Validation](docs/RELEASE-0.5.0.md)** | Verification evidence for ORBIT 0.5.0 |
+| **[Changelog](docs/CHANGELOG.md)** | Version history and release changes |
+| **[Codebase Map](CODEBASE-MAP.md)** | Architecture and component ownership |
+| **[Contributor Guidance](AGENTS.md)** | Repository development guidance |
+
+---
+
+<div align="center">
+
+### ◉ ORBIT
+
+**Native Windows integration · Lightweight desktop UX · Rust × React**
+
+Built as an exploration of native Windows integration, contextual desktop interfaces and Rust/React interoperability.
+
+<br>
+
+![Version](https://img.shields.io/badge/ORBIT-0.5.0-1DB954?style=flat-square)
+![Platform](https://img.shields.io/badge/Platform-Windows-0078D4?style=flat-square)
+
+</div>
