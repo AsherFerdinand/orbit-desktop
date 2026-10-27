@@ -1,0 +1,30 @@
+[package]
+name = "orbit-desktop"
+version = "0.5.0"
+description = "Your desktop, in motion."
+authors = ["ORBIT contributors"]
+edition = "2021"
+
+[lib]
+name = "orbit_lib"
+crate-type = ["rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = ["tray-icon", "image-png"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tokio = { version = "1", features = ["sync", "time", "rt"] }
+
+[target.'cfg(windows)'.dependencies]
+windows-sys = { version = "0.61", features = ["Win32_Security", "Win32_Storage_FileSystem", "Win32_System_Registry", "Win32_System_Power", "Win32_System_SystemServices", "Win32_System_Threading", "Win32_System_SystemInformation", "Win32_Graphics_Gdi", "Win32_UI_WindowsAndMessaging", "Win32_NetworkManagement_IpHelper", "Win32_NetworkManagement_Ndis", "Win32_Networking_WinSock", "Win32_System_Diagnostics_ToolHelp", "Win32_System_ProcessStatus"] }
+
+
+windows = { version = "0.62", features = ["Win32_Media_Audio_Endpoints", "Win32_System_Com_StructuredStorage", "Media_Control", "Foundation", "Storage_Streams", "Win32_System_WinRT", "UI_Notifications", "Data_Xml_Dom", "Win32_UI_Shell", "Win32_UI_Shell_PropertiesSystem", "Win32_System_Variant"] }
+windows-core = "0.62"
+
+webview2-com = "0.39"
+
+base64 = "0.23"

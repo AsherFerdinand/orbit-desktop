@@ -1,0 +1,33 @@
+# Build output and regenerated Tauri schemas
+node_modules/
+dist/
+/target/
+src-tauri/target/
+src-tauri/gen/schemas/
+
+# Local configuration, user data and diagnostics
+.env
+.env.*
+*.log
+*.tmp
+*.dmp
+*.pdb
+notes.json*
+settings.json*
+performance.json
+/.vscode/
+/.idea/
+
+# Release binaries and local staging stay outside source history
+/releases/
+/release-staging/
+*.exe
+*.zip
+
+# Keep historical measurements and captures local; publish only reviewed docs/image
+/docs/*
+!/docs/CHANGELOG.md
+!/docs/RELEASE-0.5.0.md
+/screenshots/**
+!/screenshots/0.4/
+!/screenshots/0.4/collapsed-final.png

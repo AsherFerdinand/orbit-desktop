@@ -1,0 +1,830 @@
+:root {
+  --orbit-accent: #1db954;
+  --green: var(--orbit-accent);
+  font-family: Inter, "Segoe UI", sans-serif;
+  color-scheme: dark;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  background: transparent;
+}
+button,
+input,
+select {
+  font: inherit;
+}
+button {
+  cursor: pointer;
+}
+button:disabled {
+  cursor: default;
+  opacity: 0.45;
+}
+button:focus-visible,
+select:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--orbit-accent);
+  outline-offset: 3px;
+}
+.stage {
+  --surface: #101113;
+  --text: #f1f2f3;
+  --muted: #888c92;
+  --border: #27292c;
+  --card: #191b1e;
+  --playback-track: #626870;
+  color: var(--text);
+  display: flex;
+  justify-content: center;
+  padding: 8px;
+  min-height: 100vh;
+}
+.stage.light {
+  color-scheme: light;
+  --surface: #f4f5f2;
+  --text: #1b201e;
+  --muted: #666f68;
+  --border: #d7ded7;
+  --card: #e8eee6;
+  --playback-track: #8882;
+}
+.island {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  box-shadow: 0 8px 22px #0003;
+  position: relative;
+  flex-shrink: 0;
+}
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 19px;
+  gap: 12px;
+}
+footer i {
+  width: 5px;
+  height: 5px;
+  background: var(--orbit-accent);
+  display: inline-block;
+  border-radius: 50%;
+}
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--border);
+  padding-top: 12px;
+  font-size: 9px;
+  color: var(--muted);
+}
+footer span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+footer button {
+  background: none;
+  border: 0;
+  color: var(--muted);
+  font-size: 9px;
+  padding: 0;
+}
+.preferences .setting {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 52px;
+  border-bottom: 1px solid var(--border);
+  font-size: 12px;
+}
+.setting small {
+  display: block;
+  font-size: 10px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+.setting select {
+  background: var(--card);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 6px;
+  font-size: 11px;
+}
+.setting input[type="range"] {
+  width: 110px;
+  accent-color: var(--green);
+}
+.switch {
+  accent-color: var(--green);
+  width: 18px;
+  height: 18px;
+}
+.footnote {
+  font-size: 10px;
+  color: var(--muted);
+  margin-top: 18px;
+}
+.preview {
+  background:
+    radial-gradient(ellipse at 50% 10%, #293b39, transparent 55%), #141c20;
+  padding-top: 24px;
+  min-height: 100vh;
+}
+.preview-note {
+  position: absolute;
+  top: 62%;
+  text-align: center;
+  color: #b9c8c7;
+}
+.preview-note > svg {
+  width: 32px;
+  height: 32px;
+}
+.preview-note h1 {
+  letter-spacing: 8px;
+  font-size: 22px;
+  font-weight: 500;
+  margin: 15px;
+}
+.preview-note p {
+  font-size: 14px;
+  color: #829594;
+}
+.preview-note > span {
+  display: block;
+  margin-top: 25px;
+  font-size: 11px;
+  color: #718785;
+}
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
+.island {
+  max-width: calc(100vw - 16px);
+  max-height: calc(100vh - 16px);
+}
+.preferences {
+  max-height: 320px;
+  overflow: auto;
+  scrollbar-width: thin;
+  padding: 0 5px 0 0;
+}
+.diagnostic-button {
+  margin-top: 15px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 8px 14px;
+  background: var(--card);
+  color: var(--text);
+  font-size: 11px;
+}
+.notification strong {
+  font-size: 22px;
+  font-weight: 500;
+}
+.notification p {
+  color: var(--green);
+  font-size: 15px;
+}
+.notification button {
+  float: right;
+  background: none;
+  border: 0;
+  color: var(--muted);
+  font-size: 10px;
+}
+.priority-100 strong {
+  color: #ffa58d;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+/* Ambient 0.4: a single utility surface, with paper regions outside the island. */
+.ambient-stage {
+  padding: 24px 8px 8px;
+  align-items: flex-start;
+}
+.ambient-shell {
+  position: relative;
+  max-width: calc(100vw - 16px);
+  flex-shrink: 0;
+}
+.ambient-island {
+  width: 100%;
+  max-width: 100%;
+  max-height: calc(100vh - 32px);
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+  box-shadow: 0 4px 20px #0002;
+}
+.ambient-header {
+  padding: 0 18px;
+  gap: 12px;
+  flex-shrink: 0;
+}
+.ambient-brand {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: var(--text);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  font-weight: 650;
+  min-width: 0;
+}
+.ambient-brand > svg {
+  width: 23px;
+  height: 23px;
+}
+.ambient-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+}
+.compact-battery {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.compact-battery svg {
+  width: 22px;
+  height: 14px;
+}
+.collapse-button,
+.note-count {
+  background: none;
+  border: 0;
+  color: var(--muted);
+  padding: 2px;
+  font-size: 16px;
+}
+.note-count {
+  font-size: 10px;
+  min-width: 10px;
+}
+.paper-stack {
+  position: absolute;
+  top: -24px;
+  left: 0;
+  width: 100%;
+  height: 52px;
+  pointer-events: none;
+}
+.paper {
+  position: absolute;
+  width: 38px;
+  height: 28px;
+  border: 0;
+  border-radius: 4px;
+  padding: 0;
+  box-shadow: 0 1px 4px #0003;
+  pointer-events: auto;
+}
+.paper-0 {
+  background: #dfd6bd;
+}
+.paper-1 {
+  background: #d8cea3;
+}
+.paper-2 {
+  background: #aabac4;
+}
+.paper span {
+  display: block;
+  width: 18px;
+  height: 1px;
+  margin: 7px auto 0;
+  background: #716d5b44;
+  box-shadow: 0 3px 0 #716d5b22;
+}
+.artwork {
+  width: 54px;
+  height: 54px;
+  position: relative;
+  flex-shrink: 0;
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--card);
+}
+.artwork.small {
+  width: 28px;
+  height: 28px;
+  border-radius: 9px;
+}
+.artwork > div {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: var(--green);
+  font-size: 25px;
+}
+.artwork.small > div {
+  font-size: 18px;
+}
+.artwork img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.artwork.paused img {
+  filter: saturate(0.55);
+  opacity: 0.75;
+}
+.artwork i {
+  position: absolute;
+  bottom: 3px;
+  right: 3px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #f5deb0;
+  box-shadow: 0 0 0 1px #0006;
+}
+.ambient-progress {
+  position: absolute;
+  bottom: 0;
+  left: 20px;
+  right: 20px;
+  height: 2px;
+  opacity: 0.65;
+}
+.ambient-progress progress,
+.track-progress progress {
+  display: block;
+  width: 100%;
+  height: 2px;
+  border: 0;
+  appearance: none;
+}
+.ambient-progress progress::-webkit-progress-bar,
+.track-progress progress::-webkit-progress-bar {
+  background: var(--playback-track);
+}
+.ambient-progress progress::-webkit-progress-value,
+.track-progress progress::-webkit-progress-value {
+  background: var(--green);
+  transition: width 0.5s linear;
+}
+.track-progress {
+  margin-top: 12px;
+}
+.track-progress > span {
+  display: flex;
+  justify-content: space-between;
+  color: var(--muted);
+  font-size: 9px;
+  margin-top: 5px;
+  font-variant-numeric: tabular-nums;
+}
+.ambient-content {
+  padding: 2px 20px 16px;
+  overflow: auto;
+  min-height: 0;
+  flex: 1;
+  scrollbar-width: thin;
+}
+.unified-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+[hidden] {
+  display: none !important;
+}
+.now-playing {
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+.track-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.track-info > div:last-child {
+  min-width: 0;
+  flex: 1;
+}
+.track-info small {
+  font-size: 8px;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  display: block;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.track-info h2 {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.3;
+  margin: 5px 0 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.track-info p {
+  font-size: 11px;
+  color: var(--muted);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.playback-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 10px;
+}
+.transport {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.transport button {
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  font-size: 15px;
+  padding: 0;
+  width: 28px;
+  height: 30px;
+  border-radius: 50%;
+}
+.transport button.play {
+  color: #07150c;
+  background: var(--green);
+  font-size: 13px;
+  width: 30px;
+}
+.compact-metrics {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--muted);
+  gap: 10px;
+}
+.compact-metrics b {
+  color: var(--text);
+  font-weight: 500;
+}
+.quick-notes {
+  border-top: 1px solid var(--border);
+  padding-top: 12px;
+}
+.notes-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 9px;
+  color: var(--muted);
+  font-size: 9px;
+  letter-spacing: 0.09em;
+}
+.notes-label b {
+  font-size: 9px;
+  letter-spacing: 0;
+  font-weight: 500;
+  margin-left: 5px;
+}
+.notes-label button {
+  font-size: 9px;
+  letter-spacing: 0;
+  background: transparent;
+  border: 0;
+  color: var(--muted);
+  padding: 0;
+}
+.quick-notes form {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  width: 100%;
+}
+.quick-notes input {
+  flex: 1;
+  min-width: 0;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: var(--card);
+  color: var(--text);
+  padding: 9px 10px;
+  font-size: 11px;
+}
+.quick-notes form > button {
+  border: 0;
+  background: var(--text);
+  color: var(--surface);
+  border-radius: 8px;
+  padding: 9px 10px;
+  font-size: 10px;
+}
+.note-list {
+  max-height: 104px;
+  overflow: auto;
+  margin-top: 10px;
+  scrollbar-width: thin;
+}
+.note-row {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 31px;
+  font-size: 11px;
+  border-bottom: 1px solid #8881;
+}
+.note-row > span {
+  min-width: 0;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: pre;
+}
+.note-row.completed > span {
+  text-decoration: line-through;
+  color: var(--muted);
+}
+.note-row > button {
+  background: transparent;
+  border: 0;
+  color: var(--muted);
+  padding: 4px;
+  font-size: 10px;
+}
+.note-row .note-check {
+  font-size: 16px;
+  color: var(--green);
+}
+.note-row .note-delete {
+  font-size: 16px;
+}
+.note-row form > button {
+  font-size: 9px;
+  padding: 7px 6px;
+}
+.note-row form input {
+  padding: 7px;
+}
+.ambient-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--muted);
+  font-size: 9px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.ambient-footer span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.ambient-footer i {
+  width: 4px;
+  height: 4px;
+  display: inline-block;
+  border-radius: 50%;
+  background: var(--muted);
+}
+.ambient-footer i.connected {
+  background: var(--green);
+}
+.ambient-footer button {
+  background: transparent;
+  border: 0;
+  color: var(--muted);
+  font-size: 9px;
+  padding: 0;
+}
+.preferences-title {
+  font-size: 14px;
+  margin: 4px 0 12px;
+  display: flex;
+  justify-content: space-between;
+}
+.preferences-title span {
+  font-size: 10px;
+  color: var(--muted);
+}
+.inline-error {
+  font-size: 10px;
+  line-height: 1.4;
+  color: #d99e83;
+  margin: 5px 0;
+}
+.ambient-content .notification {
+  padding: 8px 0;
+}
+.ambient-content .notification small {
+  display: block;
+  letter-spacing: 0.12em;
+  font-size: 9px;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+.ambient-content .notification strong {
+  display: block;
+  font-size: 16px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ambient-progress progress::-webkit-progress-value,
+  .track-progress progress::-webkit-progress-value {
+    transition: none;
+  }
+}
+.note-row .note-text {
+  flex: 1;
+  min-width: 0;
+  text-align: left;
+  white-space: pre;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--text);
+  font-size: 11px;
+  padding: 5px 0;
+}
+.note-row.completed .note-text {
+  text-decoration: line-through;
+  color: var(--muted);
+}
+.note-row.open {
+  align-items: flex-start;
+}
+.note-row.open .note-text {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+/* Keep the accessible native progress semantics; animate only a composited strip. */
+.ambient-progress > progress,
+.track-progress > progress {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+.progress-track {
+  height: 2px;
+  width: 100%;
+  background: var(--playback-track);
+  overflow: hidden;
+  border-radius: 1px;
+}
+.progress-track i {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--green);
+  transform-origin: left center;
+}
+[data-running="true"] > .progress-track i {
+  will-change: transform;
+  transition: transform 1s linear;
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-running="true"] > .progress-track i {
+    transition: none;
+  }
+}
+
+.volume-readout {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+.volume-readout svg {
+  color: var(--green);
+}
+.volume-hud {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  z-index: 3;
+  background: var(--surface);
+}
+.volume-hud-active .ambient-header {
+  visibility: hidden;
+}
+.volume-hud-active .paper-stack {
+  visibility: hidden;
+}
+
+.volume-hud-active .ambient-progress {
+  visibility: hidden;
+}
+
+/* Thin visible line inside a taller scrub target; no native work during dragging. */
+.progress-track.seekable {
+  position: relative;
+  height: 16px;
+  background: transparent;
+  cursor: pointer;
+  touch-action: none;
+  overflow: visible;
+}
+.progress-track.seekable::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 7px;
+  height: 2px;
+  background: var(--playback-track);
+}
+.progress-track.seekable i {
+  position: absolute;
+  top: 7px;
+  height: 2px;
+}
+.progress-track.seekable:focus-visible {
+  outline: 2px solid var(--orbit-accent);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+.progress-track[aria-disabled="true"] {
+  cursor: default;
+}
+
+.quick-notes form {
+  flex-wrap: wrap;
+}
+.quick-notes form > .reminder-toggle {
+  padding: 7px;
+  background: transparent;
+  color: var(--orbit-accent);
+  display: inline-flex;
+}
+.reminder-fields {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 7px;
+  width: 100%;
+  margin: 6px 0;
+  color: var(--muted);
+  font-size: 10px;
+}
+.reminder-fields label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.quick-notes .reminder-fields input[type="datetime-local"] {
+  flex: 1;
+  min-width: 160px;
+  padding: 5px;
+}
+.quick-notes .reminder-fields input[type="checkbox"] {
+  flex: none;
+  accent-color: var(--orbit-accent);
+}
+.reminder-fields button {
+  border: 0;
+  background: none;
+  color: var(--muted);
+  font-size: 10px;
+  cursor: pointer;
+}
+.reminder-fields small {
+  flex-basis: 100%;
+}
+.note-row > .note-reminder {
+  flex: none;
+  display: inline-flex;
+  color: var(--muted);
+}
+.note-row > .note-reminder.active {
+  color: var(--orbit-accent);
+}
